@@ -5,20 +5,20 @@ import Sidebar from '../components/Sidebar.jsx';
 import ChatBotWidget from '../components/ChatBotWidget.jsx';
 import { bookSlot, cancelBooking, getCabinNumber} from '../components/StudentAction.jsx';
 const StudentDashboard = () => {
-  const location = useLocation();
+  const location = useLocation();                                                        
   const [student, setStudent] = useState(null);
   const [departments, setDepartments] = useState([]);
   const [selectedDept, setSelectedDept] = useState(null);
   const [faculties, setFaculties] = useState([]);
-
+                                                                                          
   // Decode student from query params
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const userDataEncoded = queryParams.get("userme");
     if (userDataEncoded) {
-      try {
+      try {                                                                                           
         const userObj = JSON.parse(decodeURIComponent(userDataEncoded));
-        setStudent(userObj);
+        setStudent(userObj);                                                                    
       } catch (error) {
         console.error("Error decoding student data", error);
       }
@@ -43,7 +43,7 @@ const StudentDashboard = () => {
       })
       .catch(err => console.error("Error fetching faculties:", err));
   };
-
+  
   const handleBookSlot = (facultyId) => {
     const today = new Date().toISOString().split("T")[0]; // format: YYYY-MM-DD
     const timeSlot = "9:00 AM - 10:00 AM"; // Static for now

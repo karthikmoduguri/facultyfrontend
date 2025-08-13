@@ -21,15 +21,16 @@ export const bookSlot = async ({ studentId, facultyId, date, timeSlot }) => {
 // Get faculty cabin number
 export const getCabinNumber = async (facultyId) => {
   try {
-    const res = await axios.get(`http://localhost:7000/api/v1/cabinnum/getcabinnum/${facultyId}`);
-    alert(`Cabin Number: ${res.data.cabinNumber}`);
-    return res.data;
+    const res = await axios.post(`http://localhost:7000/api/v1/cabinnum/getcabinnum/${facultyId}`);
+    alert(`Cabin Number: ${res.data.data.cabinNo}`);
+    return res.data.data;
   } catch (err) {
     console.log(facultyId);
     console.error('Error fetching cabin number:', err);
     alert('Could not fetch cabin number.');
   }
 };
+
 
 // Cancel a request
 export const cancelBooking = async (bookingId) => {
